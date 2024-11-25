@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepfake Detection Upload</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: link to your CSS file -->
+</head>
+<body>
+
+    <section id="upload">
+        <h2>Upload Image for Deepfake Detection</h2>
+        <form action="/upload" method="post" enctype="multipart/form-data" onsubmit="return validateFile()">
+            <input type="file" id="fileInput" name="image" accept="image/*" required>
+            <p>Max file size: 20 MB</p>
+            <button type="submit">Scan for Deepfake</button>
+        </form>
+    </section>
+
+    <script>
+        function validateFile() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+            if (file) {
+                const fileSizeInMB = file.size / (1024 * 1024); // Convert bytes to MB
+                if (fileSizeInMB > 20) {
+                    alert("File size exceeds 20 MB limit. Please upload a smaller file.");
+                    return false;
+                }
+            }
+            return true; // Proceed with form submission
+        }
+    </script>
+
+</body>
+</html>
